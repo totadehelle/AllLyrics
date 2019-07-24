@@ -1,0 +1,13 @@
+﻿@page "{letter:alpha}"
+@model AllLyrics.Pages.ArtistsModel
+@{
+    ViewData["Title"] = "Artists";
+}
+
+<h5>Artists</h5>
+
+@foreach (var artist in Model.Artists)
+{
+    <a asp-page="/Songs" asp-route-ArtistId=@artist.Id>@artist.Name</a>
+}
+

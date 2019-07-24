@@ -1,0 +1,43 @@
+﻿@page
+@model AllLyrics.Pages.Admin.Songs.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Song</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Song.Name" class="control-label"></label>
+                <input asp-for="Song.Name" class="form-control" />
+                <span asp-validation-for="Song.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Song.Text" class="control-label"></label>
+                <textarea asp-for="Song.Text" class="form-control" rows="5" wrap="soft" /></textarea>
+                <span asp-validation-for="Song.Text" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Song.ArtistId" class="control-label"></label>
+                <select asp-for="Song.ArtistId" asp-items="Model.ArtistsList" class ="form-control"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

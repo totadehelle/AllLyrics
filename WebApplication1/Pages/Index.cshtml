@@ -1,10 +1,35 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "All Lyrics";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container center-block">
+    <section id="search">
+        <h5>Search the song or the artist by the name:</h5>
+        <div class="text-center">
+            <form method="post" class="form-inline" id="searchForm">
+                <div class="form-group mx-sm-3 mb-2">
+                    <input asp-for="SearchRequest" type="text" class="form-control" id="SearchRequest" placeholder="" required minlength="4">
+                    <span asp-validation-for="SearchRequest" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-dark mb-2" id="SearchButton">Search</button>
+            </form>
+        </div>
+    </section>
+
+
+    <section id="ArtistsIndex">
+        <h5>Search artists by the first letter of the artist's name:</h5>
+        @foreach (var letter in Model.letters)
+        {
+            <a class="btn btn-dark" asp-page="/Artists" asp-route-letter=@letter.ToString() role="button">@letter</a>
+        }
+    </section>
+    <hr/>
+    <section id="searchResult"></section>
+
+
+
 </div>
+
